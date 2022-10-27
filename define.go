@@ -20,10 +20,10 @@ type messageID struct {
 type options struct {
 	tag      string // Identifier le programme dans syslog
 	facility logFacility
-	print    logPrint // Afficher le log
+	print    LogPrint // Afficher le log
 }
 
-type logPrint uint
+type LogPrint uint
 type logFacility syslog.Priority
 type logPriority syslog.Priority
 type MsgID string
@@ -31,10 +31,10 @@ type MsgID string
 const (
 	MSGID_EMPTY MsgID = ""
 
-	LOGME_NO     logPrint = 0 // Log désactivé
-	LOGME_TERM   logPrint = 1 // Log en sortie standard
-	LOGME_SYSLOG logPrint = 2 // Log dans syslog
-	LOGME_BOTH   logPrint = 3 // Log en sortie standard et syslog
+	LOGME_NO     LogPrint = 0 // Log désactivé
+	LOGME_TERM   LogPrint = 1 // Log en sortie standard
+	LOGME_SYSLOG LogPrint = 2 // Log dans syslog
+	LOGME_BOTH   LogPrint = 3 // Log en sortie standard et syslog
 
 	// Niveau du priorité du log (classement par ordre croissant)
 	LOGME_P_DEBUG   logPriority = logPriority(syslog.LOG_DEBUG)

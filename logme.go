@@ -12,21 +12,23 @@ import (
 
 // New "constructeur" du module logme
 // args : arguments utiles à la déclaration
-//    options :
-//       tag (string): OBLIGATOIRE
-//                     ajouter un nom identifiant le programme dans les logs
 //
-//       length (int): définir le nombre de caractères du messageID [0;32]
-//                     défaut: 10
+//	options :
+//	   tag (string): OBLIGATOIRE
+//	                 ajouter un nom identifiant le programme dans les logs
 //
-//       logger (logPrint): façon d'afficher les logs (terminal, syslog, les deux, aucun)
-//                          défaut: LOGME_NO
+//	   length (int): définir le nombre de caractères du messageID [0;32]
+//	                 défaut: 10
 //
-//       facility (logFacility): sous système applicatif dont les logs sont associés
-//                               défaut: LOGME_F_SYSLOG
+//	   logger (logPrint): façon d'afficher les logs (terminal, syslog, les deux, aucun)
+//	                      défaut: LOGME_NO
+//
+//	   facility (logFacility): sous système applicatif dont les logs sont associés
+//	                           défaut: LOGME_F_SYSLOG
 //
 // @return: OK: LogMe{}, nil
-//          KO: nil, Error
+//
+//	KO: nil, Error
 func New(args map[string]interface{}) (*LogMe, error) {
 
 	logger := LogMe{}
@@ -67,11 +69,11 @@ func New(args map[string]interface{}) (*LogMe, error) {
 
 		} else if k == "logger" {
 
-			if !(isInstance(v, "logPrint")) {
-				return nil, fmt.Errorf("arg '%s' must be a logPrint", k)
+			if !(isInstance(v, "LogPrint")) {
+				return nil, fmt.Errorf("arg '%s' must be a LogPrint", k)
 			}
 
-			logger.opt.print = v.(logPrint)
+			logger.opt.print = v.(LogPrint)
 
 		} else if k == "facility" {
 			if !(isInstance(v, "logFacility")) {
@@ -122,14 +124,14 @@ func (l *LogMe) MessageID() MsgID {
 }
 
 // SetPrint modifier la sortie d'affichage des logs
-func (l *LogMe) SetPrint(print logPrint) {
+func (l *LogMe) SetPrint(print LogPrint) {
 	l.mu.Lock()
 	l.opt.print = print
 	l.mu.Unlock()
 }
 
 // GetPrint obtenir la sortie d'affichage active
-func (l *LogMe) GetPrint() logPrint {
+func (l *LogMe) GetPrint() LogPrint {
 	return l.opt.print
 }
 
