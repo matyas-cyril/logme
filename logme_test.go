@@ -10,6 +10,7 @@ import (
 	"github.com/matyas-cyril/logme"
 )
 
+// go test -timeout 30s -run ^TestLog$
 func TestLog(t *testing.T) {
 
 	var wg sync.WaitGroup

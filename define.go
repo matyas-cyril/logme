@@ -19,13 +19,13 @@ type messageID struct {
 
 type options struct {
 	tag      string // Identifier le programme dans syslog
-	facility logFacility
+	facility LogFacility
 	print    LogPrint // Afficher le log
 }
 
 type LogPrint uint
-type logFacility syslog.Priority
-type logPriority syslog.Priority
+type LogFacility syslog.Priority
+type LogPriority syslog.Priority
 type MsgID string
 
 const (
@@ -37,33 +37,33 @@ const (
 	LOGME_BOTH   LogPrint = 3 // Log en sortie standard et syslog
 
 	// Niveau du priorité du log (classement par ordre croissant)
-	LOGME_P_DEBUG   logPriority = logPriority(syslog.LOG_DEBUG)
-	LOGME_P_INFO    logPriority = logPriority(syslog.LOG_INFO)
-	LOGME_P_NOTICE  logPriority = logPriority(syslog.LOG_NOTICE)
-	LOGME_P_WARNING logPriority = logPriority(syslog.LOG_WARNING)
-	LOGME_P_ERR     logPriority = logPriority(syslog.LOG_ERR)
-	LOGME_P_CRIT    logPriority = logPriority(syslog.LOG_CRIT)
-	LOGME_P_ALERT   logPriority = logPriority(syslog.LOG_ALERT)
-	LOGME_P_EMERG   logPriority = logPriority(syslog.LOG_EMERG)
+	LOGME_P_DEBUG   LogPriority = LogPriority(syslog.LOG_DEBUG)
+	LOGME_P_INFO    LogPriority = LogPriority(syslog.LOG_INFO)
+	LOGME_P_NOTICE  LogPriority = LogPriority(syslog.LOG_NOTICE)
+	LOGME_P_WARNING LogPriority = LogPriority(syslog.LOG_WARNING)
+	LOGME_P_ERR     LogPriority = LogPriority(syslog.LOG_ERR)
+	LOGME_P_CRIT    LogPriority = LogPriority(syslog.LOG_CRIT)
+	LOGME_P_ALERT   LogPriority = LogPriority(syslog.LOG_ALERT)
+	LOGME_P_EMERG   LogPriority = LogPriority(syslog.LOG_EMERG)
 
 	// Sous système applicatif dont les logs sont associés
-	LOGME_F_AUTH   logFacility = logFacility(syslog.LOG_AUTH)   // Authentification
-	LOGME_F_CRON   logFacility = logFacility(syslog.LOG_CRON)   // Cron
-	LOGME_F_DAEMON logFacility = logFacility(syslog.LOG_DAEMON) // Daemon sans classification
-	LOGME_F_FTP    logFacility = logFacility(syslog.LOG_FTP)    // FTP
-	LOGME_F_KERN   logFacility = logFacility(syslog.LOG_KERN)   // Kernel
-	LOGME_F_LPR    logFacility = logFacility(syslog.LOG_LPR)    // Impression
-	LOGME_F_MAIL   logFacility = logFacility(syslog.LOG_MAIL)   // Mail
-	LOGME_F_NEWS   logFacility = logFacility(syslog.LOG_NEWS)   // Service Usenet, NNTP...
-	LOGME_F_SYSLOG logFacility = logFacility(syslog.LOG_SYSLOG) // Syslog
-	LOGME_F_USER   logFacility = logFacility(syslog.LOG_USER)   // Utilisateur générique
-	LOGME_F_UUCP   logFacility = logFacility(syslog.LOG_UUCP)   // Système Unix to Unix Copy Program
-	LOGME_F_LOCAL0 logFacility = logFacility(syslog.LOG_LOCAL0) // Utilisateurs Locaux
-	LOGME_F_LOCAL1 logFacility = logFacility(syslog.LOG_LOCAL1)
-	LOGME_F_LOCAL2 logFacility = logFacility(syslog.LOG_LOCAL2)
-	LOGME_F_LOCAL3 logFacility = logFacility(syslog.LOG_LOCAL3)
-	LOGME_F_LOCAL4 logFacility = logFacility(syslog.LOG_LOCAL4)
-	LOGME_F_LOCAL5 logFacility = logFacility(syslog.LOG_LOCAL5)
-	LOGME_F_LOCAL6 logFacility = logFacility(syslog.LOG_LOCAL6)
-	LOGME_F_LOCAL7 logFacility = logFacility(syslog.LOG_LOCAL7)
+	LOGME_F_AUTH   LogFacility = LogFacility(syslog.LOG_AUTH)   // Authentification
+	LOGME_F_CRON   LogFacility = LogFacility(syslog.LOG_CRON)   // Cron
+	LOGME_F_DAEMON LogFacility = LogFacility(syslog.LOG_DAEMON) // Daemon sans classification
+	LOGME_F_FTP    LogFacility = LogFacility(syslog.LOG_FTP)    // FTP
+	LOGME_F_KERN   LogFacility = LogFacility(syslog.LOG_KERN)   // Kernel
+	LOGME_F_LPR    LogFacility = LogFacility(syslog.LOG_LPR)    // Impression
+	LOGME_F_MAIL   LogFacility = LogFacility(syslog.LOG_MAIL)   // Mail
+	LOGME_F_NEWS   LogFacility = LogFacility(syslog.LOG_NEWS)   // Service Usenet, NNTP...
+	LOGME_F_SYSLOG LogFacility = LogFacility(syslog.LOG_SYSLOG) // Syslog
+	LOGME_F_USER   LogFacility = LogFacility(syslog.LOG_USER)   // Utilisateur générique
+	LOGME_F_UUCP   LogFacility = LogFacility(syslog.LOG_UUCP)   // Système Unix to Unix Copy Program
+	LOGME_F_LOCAL0 LogFacility = LogFacility(syslog.LOG_LOCAL0) // Utilisateurs Locaux
+	LOGME_F_LOCAL1 LogFacility = LogFacility(syslog.LOG_LOCAL1)
+	LOGME_F_LOCAL2 LogFacility = LogFacility(syslog.LOG_LOCAL2)
+	LOGME_F_LOCAL3 LogFacility = LogFacility(syslog.LOG_LOCAL3)
+	LOGME_F_LOCAL4 LogFacility = LogFacility(syslog.LOG_LOCAL4)
+	LOGME_F_LOCAL5 LogFacility = LogFacility(syslog.LOG_LOCAL5)
+	LOGME_F_LOCAL6 LogFacility = LogFacility(syslog.LOG_LOCAL6)
+	LOGME_F_LOCAL7 LogFacility = LogFacility(syslog.LOG_LOCAL7)
 )

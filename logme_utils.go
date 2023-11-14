@@ -62,7 +62,7 @@ func (l *LogMe) logTermPrintln(id MsgID, text ...string) {
 
 }
 
-func (l *LogMe) logSyslog(id MsgID, p logPriority, text string) error {
+func (l *LogMe) logSyslog(id MsgID, p LogPriority, text string) error {
 
 	msgId := ""
 	if len(id) != 0 {
@@ -104,7 +104,7 @@ func (l *LogMe) logSyslog(id MsgID, p logPriority, text string) error {
 	return err
 }
 
-func (l *LogMe) log(id MsgID, p logPriority, text ...string) {
+func (l *LogMe) log(id MsgID, p LogPriority, text ...string) {
 
 	if l.opt.print == LOGME_NO {
 		return

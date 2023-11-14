@@ -76,10 +76,10 @@ func New(args map[string]interface{}) (*LogMe, error) {
 			logger.opt.print = v.(LogPrint)
 
 		} else if k == "facility" {
-			if !(isInstance(v, "logFacility")) {
-				return nil, fmt.Errorf("arg '%s' must be a logFacility", k)
+			if !(isInstance(v, "LogFacility")) {
+				return nil, fmt.Errorf("arg '%s' must be a LogFacility", k)
 			}
-			logger.opt.facility = v.(logFacility)
+			logger.opt.facility = v.(LogFacility)
 
 		} else {
 			return nil, fmt.Errorf("arg '%s' not available", k)
