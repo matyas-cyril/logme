@@ -9,43 +9,43 @@ Surcharge du module syslog permettant un rendu des logs dans le terminal et / ou
 New(args map[string]interface{}) (\*LogMe, error)
 
 // Générer un MessageID
-(l \*LogMe) MessageID() msgID
+(*LogMe) MessageID() msgID
 
 // Activer l'utilisation du MessageID.
 // Par défaut, l'utilisation du MessageID est désactivée dans les logs.
-(l \*LogMe) EnableMessageID()
+(*LogMe) EnableMessageID()
 
 // Désactiver l'utilisation du MessageID
-(l \*LogMe) DisableMessageID()
+(*LogMe) DisableMessageID()
 
 // Vérifier l'activation du MessageID
-(l \*LogMe) IsEnabledMessageID() bool 
+(*LogMe) IsEnabledMessageID() bool 
 
 // Vérifier la désactivation du MessageID
-(l \*LogMe) IsDisabledMessageID() bool
+(*LogMe) IsDisabledMessageID() bool
 
 // Clôturer la connexion au daemon Syslog
-(l \*LogMe) Close() error
+(*LogMe) Close() error
 ```
 
 ```go
 // Priorités des logs par ordre croissant :
 
-(l \*LogMe) Debug(id msgID, text ...string)
+(*LogMe) Debug(id msgID, text ...string)
 
-(l \*LogMe) Info(id msgID, text ...string)
+(*LogMe) Info(id msgID, text ...string)
 
-(l \*LogMe) Notice(id msgID, text ...string)
+(*LogMe) Notice(id msgID, text ...string)
 
-(l \*LogMe) Warning(id msgID, text ...string)
+(*LogMe) Warning(id msgID, text ...string)
 
-(l \*LogMe) Error(id msgID, text ...string)
+(*LogMe) Error(id msgID, text ...string)
 
-(l \*LogMe) Critical(id msgID, text ...string)
+(*LogMe) Critical(id msgID, text ...string)
 
-(l \*LogMe) Alert(id msgID, text ...string)
+(*LogMe) Alert(id msgID, text ...string)
 
-(l \*LogMe) Emergency(id msgID, text ...string)
+(*LogMe) Emergency(id msgID, text ...string)
 ```
 
 # Arguments
