@@ -4,46 +4,56 @@ Surcharge du module syslog permettant un rendu des logs dans le terminal et / ou
 
 # Fonctions
 
-### **New(args map[string]interface{}) (\*LogMe, error)** : instancier logme
+```go
+// Instancier logme
+New(args map[string]interface{}) (\*LogMe, error)
 
-### **(l \*LogMe) MessageID() msgID** : générer un MessageID.
+// Générer un MessageID
+(l \*LogMe) MessageID() msgID
 
-### **(l \*LogMe) EnableMessageID()** : activer l'utilisation du MessageID. Par défaut, l'utilisation du MessageID est désactivée dans les logs.
+// Activer l'utilisation du MessageID.
+// Par défaut, l'utilisation du MessageID est désactivée dans les logs.
+(l \*LogMe) EnableMessageID()
 
-### **(l \*LogMe) DisableMessageID()** : desactiver l'utilisation du MessageID
+// Désactiver l'utilisation du MessageID
+(l \*LogMe) DisableMessageID()
 
-### **(l \*LogMe) IsEnabledMessageID() bool** : le MessageID est-il activé
+// Vérifier l'activation du MessageID
+(l \*LogMe) IsEnabledMessageID() bool 
 
-### **(l \*LogMe) IsDisabledMessageID() bool** : le MessageID est-il desactivé
+// Vérifier la désactivation du MessageID
+(l \*LogMe) IsDisabledMessageID() bool
 
-### **(l \*LogMe) Close() error** : clôturer la connexion au daemon Syslog
-<br>
+// Clôturer la connexion au daemon Syslog
+(l \*LogMe) Close() error
+```
 
-### **Priorités des logs par ordre croissant :**
+```go
+// Priorités des logs par ordre croissant :
 
-### **(l \*LogMe) Debug(id msgID, text ...string)**
+(l \*LogMe) Debug(id msgID, text ...string)
 
-### **(l \*LogMe) Info(id msgID, text ...string)**
+(l \*LogMe) Info(id msgID, text ...string)
 
-### **(l \*LogMe) Notice(id msgID, text ...string)**
+(l \*LogMe) Notice(id msgID, text ...string)
 
-### **(l \*LogMe) Warning(id msgID, text ...string)**
+(l \*LogMe) Warning(id msgID, text ...string)
 
-### **(l \*LogMe) Error(id msgID, text ...string)**
+(l \*LogMe) Error(id msgID, text ...string)
 
-### **(l \*LogMe) Critical(id msgID, text ...string)**
+(l \*LogMe) Critical(id msgID, text ...string)
 
-### **(l \*LogMe) Alert(id msgID, text ...string)**
+(l \*LogMe) Alert(id msgID, text ...string)
 
-### **(l \*LogMe) Emergency(id msgID, text ...string)**
-<br>
+(l \*LogMe) Emergency(id msgID, text ...string)
+```
 
 # Arguments
 
 | CLEF | TYPE | DÉFAUT | DESCRIPTION |
 |:----:|:----:|:-------:|:----------:|
 | tag | string | | Nom identifiant le prgm dans les logs |
-| length | int | 10 | Définie le nombre de caractères du messageID<br>Min:1<br>Max: 32 |
+| length | int | 10 | Définie le nombre de caractères du messageID<br>Min:1<br>Max# 32 |
 | logger | logPrint | LOGME_NO | Affichage des logs |
 | facility | logFacility | LOGME_F_SYSLOG | sous système applicatif dont les logs sont associés |
 
@@ -93,7 +103,7 @@ import (
 
 // Déclaration avec l'argument obligatoire
 args := map[string]interface{}{
-    "tag":      "monPrgm",
+    "tag"#      "monPrgm",
 }
 
 l, err := logme.New(args)
@@ -110,6 +120,6 @@ msgId := l.MessageID()
 l.Info(msgId, "Ceci est un test")
 
 Résultat :
-   2022-04-28 19:51:53 monPrgm[28930]: FB0C3A364B: Ceci est un test
+   2022-04-28 19:51:53 monPrgm[28930]# FB0C3A364B# Ceci est un test
 
 ```
