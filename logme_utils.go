@@ -20,20 +20,19 @@ import (
 //
 //	Permet de vérifier que data est un String
 func isInstance(object any, typeRef string) bool {
-
 	if object == nil {
 		return false
 	}
+	// Utiliser TypeOf directement pour obtenir le type
+	objectType := reflect.TypeOf(object)
 
-	var objectType string
-	valueOf := reflect.ValueOf(object)
-	if valueOf.Type().Kind() == reflect.Ptr {
-		objectType = reflect.Indirect(valueOf).Type().Name()
-	} else {
-		objectType = valueOf.Type().Name()
+	// Gérer les pointeurs en obtenant le type indirect
+	if objectType.Kind() == reflect.Pointer {
+		objectType = objectType.Elem()
 	}
 
-	return objectType == typeRef
+	// Vérifier si le type correspond au typeRef
+	return objectType.Name() == typeRef
 }
 
 func (l *LogMe) logTermPrintln(id MsgID, text ...string) {
@@ -124,7 +123,6 @@ func (l *LogMe) log(id MsgID, p LogPriority, text ...string) {
 			l.logSyslog(id, p, t)
 
 		case LOGME_BOTH:
-
 			l.logTermPrintln(id, text...)
 			l.logSyslog(id, p, t)
 
