@@ -113,15 +113,13 @@ func New(args map[string]any) (*LogMe, error) {
 // @return msgID : identifiant généré
 func (l *LogMe) MessageID() MsgID {
 
-	newMsgID := ""
-	if l.msgID.length > 0 {
-
-		rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
-		msgID := fmt.Sprintf("%x", md5.Sum([]byte(fmt.Sprintf("%v.%v", rnd.NormFloat64(), rnd.NormFloat64()))))
-		newMsgID = strings.ToUpper(msgID[:l.msgID.length])
-
+	if l.msgID.length == 0 {
+		return ""
 	}
-	return MsgID(newMsgID)
+
+	// Générer un pseudo aléatoire
+	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
+	return MsgID(strings.ToUpper(fmt.Sprintf("%x", md5.Sum(fmt.Appendf(nil, "%v.%v", rnd.NormFloat64(), rnd.NormFloat64())))[:l.msgID.length]))
 }
 
 // SetPrint modifier la sortie d'affichage des logs
