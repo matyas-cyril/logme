@@ -56,7 +56,7 @@ func (l *LogMe) logTermPrintln(id MsgID, text ...string) {
 			continue
 		}
 		now := time.Now()
-		fmt.Println(fmt.Sprintf("%s%s%s %s", now.Format("2006-01-02 15:04:05"), tag, msgId, t))
+		fmt.Printf("%s%s%s %s\n", now.Format("2006-01-02 15:04:05"), tag, msgId, t)
 
 	}
 
