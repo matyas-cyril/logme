@@ -71,37 +71,35 @@ func (l *LogMe) logSyslog(id MsgID, p LogPriority, text string) error {
 
 	log := fmt.Sprintf("%s%s", msgId, text)
 
-	var err error = nil
+	switch p {
 
-	if p == LOGME_P_INFO {
-		err = l.writer.Info(log)
+	case LOGME_P_INFO:
+		return l.writer.Info(log)
 
-	} else if p == LOGME_P_ERR {
-		err = l.writer.Err(log)
+	case LOGME_P_ERR:
+		return l.writer.Err(log)
 
-	} else if p == LOGME_P_WARNING {
-		err = l.writer.Warning(log)
+	case LOGME_P_WARNING:
+		return l.writer.Warning(log)
 
-	} else if p == LOGME_P_DEBUG {
-		err = l.writer.Debug(log)
+	case LOGME_P_DEBUG:
+		return l.writer.Debug(log)
 
-	} else if p == LOGME_P_NOTICE {
-		err = l.writer.Notice(log)
+	case LOGME_P_NOTICE:
+		return l.writer.Notice(log)
 
-	} else if p == LOGME_P_CRIT {
-		err = l.writer.Crit(log)
+	case LOGME_P_CRIT:
+		return l.writer.Crit(log)
 
-	} else if p == LOGME_P_ALERT {
-		err = l.writer.Alert(log)
+	case LOGME_P_ALERT:
+		return l.writer.Alert(log)
 
-	} else if p == LOGME_P_EMERG {
-		err = l.writer.Emerg(log)
+	case LOGME_P_EMERG:
+		return l.writer.Emerg(log)
 
-	} else {
-		err = fmt.Errorf("facility not valid")
 	}
 
-	return err
+	return fmt.Errorf("facility not valid")
 }
 
 func (l *LogMe) log(id MsgID, p LogPriority, text ...string) {
@@ -117,13 +115,15 @@ func (l *LogMe) log(id MsgID, p LogPriority, text ...string) {
 			continue
 		}
 
-		if l.opt.print == LOGME_TERM {
+		switch l.opt.print {
+
+		case LOGME_TERM:
 			l.logTermPrintln(id, text...)
 
-		} else if l.opt.print == LOGME_SYSLOG {
+		case LOGME_SYSLOG:
 			l.logSyslog(id, p, t)
 
-		} else if l.opt.print == LOGME_BOTH {
+		case LOGME_BOTH:
 
 			l.logTermPrintln(id, text...)
 			l.logSyslog(id, p, t)
