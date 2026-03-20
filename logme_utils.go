@@ -9,7 +9,7 @@ import (
 )
 
 // isInstance fonction permettant de tester le type de variable
-// @param1 interface{} : Objet a testé
+// @param1 any : Objet a testé
 // @param2 string : Type de référence
 // @return bool
 //
@@ -19,7 +19,7 @@ import (
 // Exemple : isIntance(data,"string")
 //
 //	Permet de vérifier que data est un String
-func isInstance(object interface{}, typeRef string) bool {
+func isInstance(object any, typeRef string) bool {
 
 	if object == nil {
 		return false

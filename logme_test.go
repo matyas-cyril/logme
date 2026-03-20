@@ -15,7 +15,7 @@ func TestLog(t *testing.T) {
 
 	var wg sync.WaitGroup
 
-	args := map[string]interface{}{
+	args := map[string]any{
 		"tag":      "monPrgmTest",
 		"length":   20,                 // Définir un MessageID de 20 caractères
 		"logger":   logme.LOGME_BOTH,   // Affichage Terminal et dans les logs

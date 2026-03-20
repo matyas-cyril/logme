@@ -29,7 +29,7 @@ import (
 // @return: OK: LogMe{}, nil
 //
 //	KO: nil, Error
-func New(args map[string]interface{}) (*LogMe, error) {
+func New(args map[string]any) (*LogMe, error) {
 
 	logger := LogMe{}
 

@@ -6,7 +6,7 @@ Surcharge du module syslog permettant un rendu des logs dans le terminal et / ou
 
 ```go
 // Instancier logme
-New(args map[string]interface{}) (\*LogMe, error)
+New(args map[string]any) (\*LogMe, error)
 
 // Générer un MessageID
 (*LogMe) MessageID() msgID
@@ -102,7 +102,7 @@ import (
 )
 
 // Déclaration avec l'argument obligatoire
-args := map[string]interface{}{
+args := map[string]any{
     "tag"#      "monPrgm",
 }
 
