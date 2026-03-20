@@ -1,3 +1,3 @@
 module github.com/matyas-cyril/logme
 
-go 1.18
+go 1.25
