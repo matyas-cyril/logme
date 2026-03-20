@@ -41,7 +41,8 @@ func New(args map[string]any) (*LogMe, error) {
 	// Parcourir les options
 	for k, v := range args {
 
-		if k == "length" {
+		switch k {
+		case "length":
 
 			if !(isInstance(v, "int")) {
 				return nil, fmt.Errorf("arg '%s' must be an integer", k)
@@ -55,7 +56,7 @@ func New(args map[string]any) (*LogMe, error) {
 
 			logger.msgID.length = uint8(len)
 
-		} else if k == "tag" {
+		case "tag":
 			if !(isInstance(v, "string")) {
 				return nil, fmt.Errorf("arg '%s' must be a string", k)
 			}
@@ -67,7 +68,7 @@ func New(args map[string]any) (*LogMe, error) {
 
 			logger.opt.tag = name
 
-		} else if k == "logger" {
+		case "logger":
 
 			if !(isInstance(v, "LogPrint")) {
 				return nil, fmt.Errorf("arg '%s' must be a LogPrint", k)
@@ -75,13 +76,13 @@ func New(args map[string]any) (*LogMe, error) {
 
 			logger.opt.print = v.(LogPrint)
 
-		} else if k == "facility" {
+		case "facility":
 			if !(isInstance(v, "LogFacility")) {
 				return nil, fmt.Errorf("arg '%s' must be a LogFacility", k)
 			}
 			logger.opt.facility = v.(LogFacility)
 
-		} else {
+		default:
 			return nil, fmt.Errorf("arg '%s' not available", k)
 		}
 
