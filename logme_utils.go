@@ -109,21 +109,21 @@ func (l *LogMe) log(id MsgID, p LogPriority, text ...string) {
 
 	for _, t := range text {
 
-		t = strings.TrimSpace(t)
-		if len(t) == 0 {
+		t = strings.TrimRight(t, " ")
+		if len(strings.TrimSpace(t)) == 0 {
 			continue
 		}
 
 		switch l.opt.print {
 
 		case LOGME_TERM:
-			l.logTermPrintln(id, text...)
+			l.logTermPrintln(id, t)
 
 		case LOGME_SYSLOG:
 			l.logSyslog(id, p, t)
 
 		case LOGME_BOTH:
-			l.logTermPrintln(id, text...)
+			l.logTermPrintln(id, t)
 			l.logSyslog(id, p, t)
 
 		}
